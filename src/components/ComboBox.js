@@ -1,52 +1,40 @@
-import * as React from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
+import { Autocomplete, TextField } from "@mui/material";
+import "../styles.css"; // Import global styles
 
-export default function ComboBox({
-  cities,
-  setSelectedCity,
-  handleChange,
-  loading,
-}) {
+const ComboBox = ({ onSelect }) => {
+  const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchCities = async (query) => {
+    if (!query) return;
+
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=10&language=en&format=json`
+      );
+      const data = await response.json();
+      setCities(data.results || []);
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+    }
+    setLoading(false);
+  };
+
   return (
-    <Box sx={{ width: "100%", p: 2 }}>
-      <Autocomplete
-        options={cities}
-        getOptionLabel={(option) => option.label}
-        onChange={(event, newValue) => setSelectedCity(newValue || null)}
-        loading={loading}
-        noOptionsText="No results found"
-        sx={{
-          width: "100%",
-          maxWidth: 500,
-          margin: "auto",
-          bgcolor: "#fff",
-          borderRadius: 3,
-          boxShadow: "0px 3px 10px rgba(0,0,0,0.1)",
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Search City"
-            variant="outlined"
-            fullWidth
-            onChange={handleChange}
-            InputProps={{
-              ...params.InputProps,
-              endAdornment: (
-                <>
-                  {loading ? (
-                    <CircularProgress color="inherit" size={20} />
-                  ) : null}
-                  {params.InputProps.endAdornment}
-                </>
-              ),
-            }}
-          />
-        )}
-      />
-    </Box>
+    <Autocomplete
+      options={cities}
+      getOptionLabel={(option) => option.name}
+      onInputChange={(_, value) => fetchCities(value)}
+      onChange={(_, value) => onSelect(value)}
+      loading={loading}
+      className="search-box"
+      renderInput={(params) => (
+        <TextField {...params} label="Search City" variant="outlined" />
+      )}
+    />
   );
-}
+};
+
+export default ComboBox;

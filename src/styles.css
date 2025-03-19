@@ -1,0 +1,96 @@
+/* Full-Screen Background */
+.app-container {
+  height: 100vh;
+  background: linear-gradient(to bottom, #87CEEB, #4682B4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+/* Centered Content */
+.content {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Title */
+.title {
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Weather Card */
+.weather-card {
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+/* Temperature */
+.temperature {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Feels Like */
+.feels-like {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Weather Info Grid */
+.weather-info {
+  margin-top: 15px;
+}
+
+/* Individual Info Box */
+.info-box {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+/* Forecast Title */
+.forecast-title {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Forecast Container */
+.forecast-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+/* Individual Forecast Box */
+.forecast-box {
+  padding: 10px;
+  min-width: 100px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Search Box */
+.search-box {
+  margin-bottom: 20px;
+}
+
+/* Loading Spinner */
+.loading {
+  margin: 20px;
+}
+
+/* Error Text */
+.error-text {
+  font-size: 1.2rem;
+  color: red;
+}
