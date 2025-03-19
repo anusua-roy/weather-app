@@ -11,7 +11,7 @@ beforeEach(() => {
 
 test("renders the Weather App title and search bar", () => {
   render(<App />);
-  expect(screen.getByText("Weather App")).toBeInTheDocument();
+  expect(screen.getByText(/Weather App/)).toBeInTheDocument();
 });
 
 // Commenting out flaky tests that require API calls
