@@ -29,6 +29,6 @@ export const fetchWeatherData = async (lat, lon) => {
     return data;
   } catch (error) {
     console.error("Error fetching weather:", error);
-    return null;
+    return {};
   }
 };
